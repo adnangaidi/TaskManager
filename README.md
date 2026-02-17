@@ -98,7 +98,6 @@ spring.h2.console.enabled=true
 
 #### Lancer le backend
 ```bash
-cd backend
 mvn clean install
 mvn spring-boot:run
 ```
@@ -107,7 +106,7 @@ Le serveur démarrera sur `http://localhost:8080`
 
 ### 3️⃣ Frontend (Angular)
 ```bash
-cd frontend
+cd managerTaches
 npm install
 ng serve
 ```
