@@ -63,7 +63,7 @@ Application full-stack moderne pour la gestion de tâches avec authentification 
 ### 1️⃣ Cloner le repository
 ```bash
 git clone https://github.com/adnangaidi/TaskManager.git
-cd task-manager
+cd TaskManager
 ```
 
 ### 2️⃣ Backend (Spring Boot)
