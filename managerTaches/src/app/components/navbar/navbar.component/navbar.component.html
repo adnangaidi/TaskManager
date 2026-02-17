@@ -1,0 +1,55 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="navbar-content">
+    <!-- Logo et Titre -->
+    <div class="navbar-brand">
+      <mat-icon class="brand-icon">task_alt</mat-icon>
+      <span class="brand-title" routerLink="/">Task Manager</span>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navbar-menu">
+      <ng-container *ngIf="isAuthenticated$ | async; else guestMenu">
+        <!-- Menu Authentifié -->
+        <button mat-button routerLink="/tasks" routerLinkActive="active-link">
+          <mat-icon>list</mat-icon>
+          Mes Tâches
+        </button>
+
+        <!-- Menu Utilisateur -->
+        <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
+          <mat-icon>account_circle</mat-icon>
+          <span class="username">{{ (currentUser$ | async)?.username }}</span>
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item disabled>
+            <mat-icon>email</mat-icon>
+            <span>{{ (currentUser$ | async)?.email }}</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item routerLink="/profile">
+            <mat-icon>person</mat-icon>
+            <span>Mon Profil</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Déconnexion</span>
+          </button>
+        </mat-menu>
+      </ng-container>
+
+      <!-- Menu Non Authentifié -->
+      <ng-template #guestMenu>
+        <button mat-button routerLink="/login">
+          <mat-icon>login</mat-icon>
+          Connexion
+        </button>
+        <button mat-raised-button color="accent" routerLink="/register">
+          <mat-icon>person_add</mat-icon>
+          Inscription
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</mat-toolbar>

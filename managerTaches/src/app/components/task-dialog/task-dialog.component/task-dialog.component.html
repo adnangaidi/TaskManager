@@ -1,0 +1,78 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>
+    <mat-icon class="dialog-icon">{{isEditMode ? 'edit' : 'add_task'}}</mat-icon>
+    {{dialogTitle}}
+  </h2>
+
+  <mat-dialog-content>
+    <form [formGroup]="taskForm" class="task-form">
+
+      <!-- Title Field -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Titre</mat-label>
+        <input matInput formControlName="title" placeholder="Entrez le titre de la tâche" required>
+        <mat-icon matPrefix>title</mat-icon>
+        <mat-error *ngIf="taskForm.get('title')?.invalid">
+          {{getErrorMessage('title')}}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Description Field -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          formControlName="description"
+          placeholder="Décrivez la tâche en détail"
+          rows="4"
+          required>
+        </textarea>
+        <mat-icon matPrefix>description</mat-icon>
+        <mat-error *ngIf="taskForm.get('description')?.invalid">
+          {{getErrorMessage('description')}}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Status Field -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Statut</mat-label>
+        <mat-select formControlName="status" required>
+          <mat-option *ngFor="let status of statusOptions" [value]="status.value">
+            <div class="status-option">
+              <mat-icon [color]="status.color">{{status.icon}}</mat-icon>
+              {{status.label}}
+            </div>
+          </mat-option>
+        </mat-select>
+        <mat-icon matPrefix>flag</mat-icon>
+      </mat-form-field>
+
+      <!-- Due Date Field -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Date d'échéance</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dueDate">
+        <mat-icon matPrefix>event</mat-icon>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-hint>Optionnel</mat-hint>
+      </mat-form-field>
+
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button (click)="onCancel()" class="cancel-button">
+      <mat-icon>close</mat-icon>
+      Annuler
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onSubmit()"
+      [disabled]="taskForm.invalid"
+      class="submit-button">
+      <mat-icon>{{isEditMode ? 'save' : 'add'}}</mat-icon>
+      {{isEditMode ? 'Enregistrer' : 'Créer'}}
+    </button>
+  </mat-dialog-actions>
+</div>

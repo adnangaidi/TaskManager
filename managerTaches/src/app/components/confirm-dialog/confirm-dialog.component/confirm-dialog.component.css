@@ -1,0 +1,35 @@
+.confirm-dialog {
+  padding: 10px;
+}
+
+.dialog-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f44336;
+  margin-bottom: 15px;
+}
+
+.warning-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.dialog-message {
+  font-size: 16px;
+  color: #666;
+  margin: 20px 0;
+}
+
+.dialog-actions {
+  padding: 16px 0;
+  gap: 10px;
+}
+
+.cancel-btn,
+.confirm-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
